@@ -1,0 +1,40 @@
+# BiblioShare - Geolocalizzazione Culturale Urbana
+
+Progetto di sviluppo software per la condivisione del patrimonio librario tra privati cittadini, focalizzato sulla prossimità urbana e lo scambio circolare.
+
+##  Stack Tecnologico
+Il progetto segue l'architettura **MERN** con varianti ottimizzate per la gestione dei dati geografici:
+- **Frontend**: React.js (Componenti funzionali e Hooks).
+- **Backend**: Node.js & Express.
+- **Database**: PostgreSQL con estensione **PostGIS** (per query geospaziali avanzate).
+- **UI/UX**: HTML5/CSS3 con focus su accessibilità (WCAG 2.1).
+
+## 🛠 Caratteristiche Tecniche Principali
+
+### 1. Gestione Geospaziale (Core)
+A differenza di una gestione tramite semplici campi decimali, questo progetto utilizza l'estensione **PostGIS**. 
+- **Tipo di dato**: `GEOMETRY(Point, 4326)` per memorizzare le coordinate GPS.
+- **Ricerca Spaziale**: Implementazione della funzione `ST_DWithin` per calcolare la distanza reale tra utenti e libri in metri.
+- **Performance**: Utilizzo di indici **GIST** per ottimizzare le query di ricerca su mappa.
+
+### 2. Accessibilità e Design (WCAG 2.1)
+L'interfaccia è stata progettata per essere inclusiva:
+- Utilizzo di attributi **ARIA** (Accessible Rich Internet Applications).
+- Contrasto cromatico a norma di legge.
+- Navigazione da tastiera ottimizzata con focus visibile (outline 3px).
+
+### 3. Sicurezza e Privacy (GDPR)
+- **Hashing delle Password**: Utilizzo di algoritmi sicuri per la memorizzazione delle credenziali.
+- **Privacy della Posizione**: Il sistema prevede l'offuscamento delle coordinate esatte dell'utente, mostrando solo un'area di prossimità nei risultati pubblici.
+
+## 📂 Struttura del Repository
+- `/db`: Contiene `schema.sql` con la definizione delle tabelle e dei vincoli PostGIS.
+- `/backend`: Logica server in Node.js e query SQL spaziali.
+- `/frontend`: Componenti React e fogli di stile accessibili.
+- `amministrazione.html`: Prototipo della dashboard di monitoraggio e statistiche.
+
+## ⚙️ Installazione
+1. Clonare il repository.
+2. Configurare PostgreSQL e attivare PostGIS: `CREATE EXTENSION postgis;`.
+3. Eseguire lo script in `/db/schema.sql`.
+4. `npm install` nelle cartelle backend e frontend.
